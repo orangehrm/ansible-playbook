@@ -1,0 +1,14 @@
+- hosts: server1
+  serial: 1
+  remote_user: user
+  become: yes
+  become_method: su
+  vars_files:
+    - vars/external_vars.yml
+  roles:
+    - nginx
+    - docker
+    - docker-compose
+    - java
+    - jenkins
+    - openldap-server
