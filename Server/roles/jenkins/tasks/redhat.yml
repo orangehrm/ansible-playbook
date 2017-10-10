@@ -1,0 +1,31 @@
+- name: (Redhat) repo files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: redhat_files
+  tags: [jenkins]
+
+- name: (Redhat) key import
+  command: rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+  tags: [jenkins]
+
+- name: (Redhat) package is installed
+  yum:
+    name: jenkins
+    state: present
+  tags: [jenkins]
+
+- name: (Redhat) System Daemon is reloaded
+  command: systemctl daemon-reload
+  tags: [jenkins]
+
+- name: (Redhat) service is running
+  service:
+    name: jenkins
+    state: running
+  tags: [jenkins]
+
+- name: (Redhat) service is enabled in reboot
+  command: systemctl enable jenkins
+  tags: [jenkins]
+

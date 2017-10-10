@@ -1,0 +1,21 @@
+- name: (Ubuntu) add key to apt
+  command: wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+  tags: [jenkins]
+
+- name: (Ubuntu) add repository and update apt cache
+  apt_repository:
+    repo: deb https://pkg.jenkins.io/debian-stable binary/
+    update_cache: yes
+    state: present
+  tags: [jenkins]
+
+- name: (Ubuntu) application is present
+  apt:
+    name: jenkins
+    state: latest
+    force: yes
+  tags: [jenkins]
+
+- name: (Ubuntu) service is enabled in reboot
+  command: systemctl enable jenkins
+  tags: [jenkins]
