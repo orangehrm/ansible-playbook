@@ -1,0 +1,16 @@
+#The domain prefix for ldap
+openldap_server_domain_name: orangehrm.com
+
+#This is the password for admin for openldap
+openldap_server_rootpw: orangehrm
+
+#The self signed ssl parameters
+openldap_server_country: LK
+openldap_server_state: hongkong
+openldap_server_location: hongkong
+openldap_server_organization: orangehrm
+
+openldap_server_enable_ssl: true
+
+#The ldif file
+openldap_server_ldif: domain.ldif
