@@ -1,0 +1,5 @@
+docker_extra: ""
+
+redhat_files: [
+  { src: "docker.redhat.repo", dest: "/etc/yum.repos.d/docker.repo" }
+]
