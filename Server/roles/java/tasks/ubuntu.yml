@@ -1,0 +1,5 @@
+- name: package is installed
+  apt:
+    name=openjdk-7-jdk
+    state=present
+  tags: [java]
