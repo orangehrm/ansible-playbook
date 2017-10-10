@@ -1,0 +1,20 @@
+- name: (Ubuntu) application is present
+  apt:
+    name: nginx
+    state: latest
+    force: yes
+  tags: [nginx]
+
+- name: (Ubuntu) System daemon is reloaded
+  command: systemctl daemon-reload
+  tags: [nginx]
+
+- name: (Ubuntu) service is restarted
+  service:
+    name: nginx
+    state: restarted
+  tags: [nginx]
+
+- name: (Ubuntu) service is enabled in reboot
+  command: systemctl enable nginx
+  tags: [nginx]

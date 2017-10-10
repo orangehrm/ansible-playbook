@@ -1,0 +1,7 @@
+centos_files: [
+  { src: "nginx.centos.repo", dest: "/etc/yum.repos.d/nginx.repo" }
+]
+
+redhat_files: [
+  { src: "nginx.rhel.repo", dest: "/etc/yum.repos.d/nginx.repo" }
+]

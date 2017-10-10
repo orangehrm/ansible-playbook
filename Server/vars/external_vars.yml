@@ -1,0 +1,6 @@
+ansible_distribution: "Red Hat Enterprise Linux" #{Debian, Ubuntu, Red Hat Enterprise Linux, CentOS}
+redhat_type: "rhel" #{rhel, centos}
+ansible_os_family: "redhat" #redhat, ubuntu
+
+sshd_port: 22
+allow_tcp_forward: "No"

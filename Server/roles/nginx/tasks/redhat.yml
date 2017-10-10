@@ -1,0 +1,27 @@
+- name: (Redhat) repo files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: redhat_files
+  tags: [nginx]
+
+- name: (Redhat) package is installed
+  yum:
+    name: nginx
+    state: present
+  tags: [nginx]
+
+- name: (Redhat) system daemon is reloaded
+  command: systemctl daemon-reload
+  tags: [nginx]
+
+- name: (Redhat) service is running
+  service:
+    name: nginx
+    state: running
+  tags: [nginx]
+
+- name: (Redhat) service is enabled in reboot
+  command: systemctl enable nginx
+  tags: [nginx]
+
