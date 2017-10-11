@@ -1,0 +1,24 @@
+sftp_home_partition: /ftp/internalftp
+sftp_directories: [ home ]
+user_name: redhat
+dir_mode: 755
+sftp_config: false
+permissions: true
+directories: true
+task: add
+server_uri: ldap://10.5.0.22
+base_dn: dc=orangehrm,dc=com
+usr_base_dn: ou=users,dc=orangehrm,dc=com
+bind_dn: cn=admin,dc=orangehrm,dc=com
+bind_pw: admin
+usr_pwd: admin
+surname: client
+email_host: smtp.gmail.com
+email_port: 465
+email_username: user@orangehrm.us.com
+email_password: password
+email_to: recepient@gmail.com
+email_cc:
+email_subject: test
+email_body: "<h2>FTP account was created successfully </h2> <br><br>  username : {{ user_name }} <br> password : {{ usr_pwd }} <br> Use these credentials to access your ftp directory. Please use this location to upload confidential details to orangehrm "
+email_subtype: html

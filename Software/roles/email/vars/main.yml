@@ -5,5 +5,5 @@ email_password: password
 email_to: recepient@gmail.com
 email_cc:
 email_subject: test
-email_body: "<h2>FTP account was created successfully </h2> <br><br>  username : {{ user_name }} <br> password : {{ usr_pwd }} <br> Use these credentials to access your ftp directory. Please use this location to upload confidential details to orangehrm "
+email_body:
 email_subtype: html

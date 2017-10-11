@@ -1,8 +1,8 @@
 ---
 - name: sftp-playbook | Test sftp-server role
   hosts: phantom
-  vars:
-    user_name: redhat
+  vars_files:
+      - vars/external_vars.yml
   roles:
 #    - LDAP
     - sftp
