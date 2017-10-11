@@ -1,0 +1,19 @@
+---
+- name: delete a user
+  ldap_entry:
+    dn: uid={{ user_name }},{{ usr_base_dn }}
+    state: absent
+    objectClass:
+      - inetOrgPerson
+      - posixAccount
+#    attributes:
+#      description: An sftp user
+#      userPassword: "{{ usr_pwd }}"
+#      sn: "{{ surname }}"
+#      cn: "{{ user_name }}"
+#      gidNumber: "{{ gidNumber }}"
+#      homeDirectory: "/home/{{ user_name }}"
+#      uidNumber: "{{ uidNumber }}"
+    server_uri: "{{ server_uri }}"
+    bind_dn: "{{ bind_dn }}"
+    bind_pw: "{{ bind_pw }}"

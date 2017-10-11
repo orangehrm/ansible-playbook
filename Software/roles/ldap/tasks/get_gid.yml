@@ -1,0 +1,15 @@
+---
+
+- set_fact: gid={{ lookup('ini', 'gid section=ldap file=roles/LDAP/files/Details.ini')|int }}
+- debug: msg={{ gid }}
+- set_fact: gid={{ gid| int + 1  }}
+
+- debug: msg={{ gid }}
+
+
+- ini_file:
+    path: roles/LDAP/files/Details.ini
+    section: ldap
+    option: gid
+    value: "{{ gid }}"
+    backup: yes

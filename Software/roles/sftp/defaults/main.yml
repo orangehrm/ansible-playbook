@@ -1,0 +1,4 @@
+sftp_config: no
+permissions: yes
+directories: yes
+default_dir: home

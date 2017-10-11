@@ -1,0 +1,12 @@
+- name: delete a group
+  ldap_entry:
+    dn: cn={{ user_name }},{{ base_dn }}
+    state: absent
+    objectClass:
+      - posixGroup
+#    attributes:
+#      cn: "{{ user_name }}"
+#      gidNumber: "{{ gid }}"
+    server_uri: "{{ server_uri }}"
+    bind_dn: "{{ bind_dn }}"
+    bind_pw: "{{ bind_pw }}"

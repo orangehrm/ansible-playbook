@@ -1,0 +1,7 @@
+# A working chrooted SFTP setup requires root:sftgroup ownership of a user's home directory.
+- name: SFTP-Server | Correct ownership and permission of home directories
+  file:
+    path: "{{ sftp_home_partition }}/{{ user_name }}"
+    owner: root
+    group: "{{ user_name }}"
+    mode: "0750"

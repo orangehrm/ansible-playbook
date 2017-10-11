@@ -1,0 +1,17 @@
+#- name: Create email
+#  template:
+#     src: "email_body.j2"
+#     dest: "{{ sendmail_tmp }}/email_body.txt"
+#  register: sendmail_file
+
+- name: Sending email
+  mail:
+    host: "{{ email_host }}"
+    port: "{{ email_port }}"
+    username: "{{ email_username }}"
+    password: "{{ email_password }}"
+    to: "{{ email_to }}"
+    cc: "{{ email_cc }}"
+    subject: "{{ email_subject }}"
+    body: "{{ lookup('template', 'email_body.j2')  }}"
+    subtype: "{{ email_subtype }}"

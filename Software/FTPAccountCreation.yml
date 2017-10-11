@@ -1,0 +1,9 @@
+---
+- name: sftp-playbook | Test sftp-server role
+  hosts: phantom
+  vars:
+    user_name: redhat
+  roles:
+#    - LDAP
+    - sftp
+#    - email

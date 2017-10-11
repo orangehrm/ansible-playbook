@@ -1,0 +1,11 @@
+- debug: var={{ sftp_config }}
+- include: ssh_config.yml
+  when: sftp_config
+
+- include: create_directories.yml
+  when: permissions
+
+- include: issue_permissions.yml
+  when: directories
+
+

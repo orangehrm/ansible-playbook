@@ -1,0 +1,12 @@
+- debug: msg={{ gid }}
+- name: add a group
+  ldap_entry:
+    dn: cn={{ user_name }},{{ base_dn }}
+    objectClass:
+      - posixGroup
+    attributes:
+      cn: "{{ user_name }}"
+      gidNumber: "{{ gid }}"
+    server_uri: "{{ server_uri }}"
+    bind_dn: "{{ bind_dn }}"
+    bind_pw: "{{ bind_pw }}"

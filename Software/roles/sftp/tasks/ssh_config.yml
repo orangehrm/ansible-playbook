@@ -1,0 +1,20 @@
+# Necessary for chrooting of SFTP users.
+- name: SFTP-Server | Alter sftp subsystem entry
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^Subsystem(\s+)sftp'
+    line: "Subsystem sftp internal-sftp"
+    state: present
+  notify: SFTP-Server | Restart sshd
+
+- name: SFTP-Server | Add sshd_config block
+  blockinfile:
+    dest: /etc/ssh/sshd_config
+    marker: '# {mark} SFTP-Server block'
+    block: |
+      Match Group {{ user_name }}
+          ChrootDirectory %h
+          AllowTCPForwarding no
+          X11Forwarding no
+          ForceCommand internal-sftp
+  notify: SFTP-Server | Restart sshd
