@@ -13,7 +13,7 @@
     marker: '# {mark} SFTP-Server block'
     block: |
       Match Group {{ user_name }}
-          ChrootDirectory %h
+          ChrootDirectory {{ sftp_home_partition }}/{{ user_name }}
           AllowTCPForwarding no
           X11Forwarding no
           ForceCommand internal-sftp
