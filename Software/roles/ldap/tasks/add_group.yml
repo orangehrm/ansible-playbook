@@ -1,7 +1,7 @@
 - debug: msg={{ gid }}
 - name: add a group
   ldap_entry:
-    dn: cn={{ user_name }},{{ base_dn }}
+    dn: cn={{ user_name }},{{ grp_base_dn }}
     objectClass:
       - posixGroup
     attributes:

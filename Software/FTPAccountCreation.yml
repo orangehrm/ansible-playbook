@@ -4,6 +4,6 @@
   vars_files:
       - vars/external_vars.yml
   roles:
-#    - LDAP
-    - sftp
-#    - email
+    - ldap
+#   - sftp
+    - email
