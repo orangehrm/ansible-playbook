@@ -1,7 +1,6 @@
 - name: Check whether group exist
   action: shell getent group {{ user_name }}
   register: group_exist
-  remote_user: root
   ignore_errors: true
   when:
     - task == "add"
@@ -9,7 +8,6 @@
 - name: Check whether user exist
   action: shell /usr/bin/getent passwd {{ user_name }}
   register: user_exist
-  remote_user: root
   ignore_errors: true
   when:
     - task == "add"
