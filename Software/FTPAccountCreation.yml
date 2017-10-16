@@ -1,6 +1,6 @@
 ---
 - name: sftp-playbook | Test sftp-server role
-  hosts: phantom
+  hosts: artemis
   vars_files:
       - vars/external_vars.yml
   roles:
