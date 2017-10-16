@@ -13,6 +13,6 @@
       gidNumber: "{{ gid }}"
       homeDirectory: "{{sftp_home_partition}}/{{ user_name }}"
       uidNumber: "{{ uid }}"
-    server_uri: "{{ server_uri }}"
+    server_uri: "{{ ldap_server_uri }}"
     bind_dn: "{{ bind_dn }}"
     bind_pw: "{{ bind_pw }}"

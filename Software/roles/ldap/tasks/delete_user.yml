@@ -14,6 +14,6 @@
 #      gidNumber: "{{ gidNumber }}"
 #      homeDirectory: "/home/{{ user_name }}"
 #      uidNumber: "{{ uidNumber }}"
-    server_uri: "{{ server_uri }}"
+    server_uri: "{{ ldap_server_uri }}"
     bind_dn: "{{ bind_dn }}"
     bind_pw: "{{ bind_pw }}"

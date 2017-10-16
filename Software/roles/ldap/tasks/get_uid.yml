@@ -1,8 +1,8 @@
 ---
-- set_fact: uid="{{ lookup('ini', 'uid section=ldap file=roles/LDAP/files/Details.ini')}}"
+- set_fact: uid="{{ lookup('ini', 'uid section=ldap file=roles/ldap/files/Details.ini')}}"
 - set_fact: uid={{ uid| int + 1  }}
 - ini_file:
-    path: roles/LDAP/files/Details.ini
+    path: roles/ldap/files/Details.ini
     section: ldap
     option: uid
     value: "{{ uid }}"
