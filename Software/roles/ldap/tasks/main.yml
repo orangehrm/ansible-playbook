@@ -13,18 +13,18 @@
     - task == "add"
 
 
-- include: roles/LDAP/tasks/get_gid.yml
+- include: roles/ldap/tasks/get_gid.yml
   when:
     - task == "add"
     - group_exist.stdout == ""
 
-- include: roles/LDAP/tasks/add_group.yml
+- include: roles/ldap/tasks/add_group.yml
   when:
     - task == "add"
     - group_exist.stdout == ""
 
 
-- include: roles/LDAP/tasks/get_uid.yml
+- include: roles/ldap/tasks/get_uid.yml
   when:
     - task == "add"
     - group_exist.stdout == ""
@@ -35,11 +35,11 @@
     - group_exist.stdout == ""
 
 
-- include: roles/LDAP/tasks/delete_user.yml
+- include: roles/ldap/tasks/delete_user.yml
   when:
     - task == "delete"
 
-- include: roles/LDAP/tasks/delete_group.yml
+- include: roles/ldap/tasks/delete_group.yml
   when:
     - task == "delete"
 
