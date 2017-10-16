@@ -1,5 +1,5 @@
 task: add
-server_uri: ldap://10.5.0.22
+ldap_server_uri: ldap://10.5.0.22
 base_dn: dc=orangehrm,dc=com
 usr_base_dn: ou=users,dc=orangehrm,dc=com
 grp_base_dn: ou=groups,dc=orangehrm,dc=com
