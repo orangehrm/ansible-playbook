@@ -1,9 +1,0 @@
-email_host: smtp.gmail.com
-email_port: 465
-email_username: user@orangehrm.us.com
-email_password: password
-email_to: recepient@gmail.com
-email_cc:
-email_subject: test
-email_body:
-email_subtype: html
