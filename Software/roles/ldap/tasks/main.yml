@@ -18,9 +18,6 @@
     - task == "add"
     - group_exist.stdout == ""
 
-- debug: var={{ ldap_server_uri }}
-
-
 - include: roles/ldap/tasks/add_group.yml
   when:
     - task == "add"
