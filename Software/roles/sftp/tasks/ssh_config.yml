@@ -1,4 +1,4 @@
-# Necessary for chrooting of SFTP users.
+ Necessary for chrooting of SFTP users.
 - name: SFTP-Server | Alter sftp subsystem entry
   lineinfile:
     path: /etc/ssh/sshd_config
