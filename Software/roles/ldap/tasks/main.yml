@@ -32,7 +32,7 @@
     - task == "add"
     - group_exist.stdout == ""
 
-- include: roles/LDAP/tasks/add_users.yml
+- include: roles/ldap/tasks/add_users.yml
   when:
     - task == "add"
     - group_exist.stdout == ""
