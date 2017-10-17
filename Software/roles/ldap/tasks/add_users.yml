@@ -5,6 +5,7 @@
     objectClass:
       - inetOrgPerson
       - posixAccount
+      - top
     attributes:
       description: An sftp user
       userPassword: "{{ usr_pwd }}"
