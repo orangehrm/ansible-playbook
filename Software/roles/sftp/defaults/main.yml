@@ -1,4 +1,8 @@
-sftp_config: no
-permissions: yes
-directories: yes
+sftp_home_partition: /ftp/internalftp
+sftp_directories: [ home ]
+user_name: "thulana"
+dir_mode: 755
+sftp_config: false
+permissions: true
+directories: true
 default_dir: "home"
