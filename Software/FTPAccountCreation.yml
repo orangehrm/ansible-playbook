@@ -1,9 +1,9 @@
 ---
 - name: sftp-playbook | Test sftp-server role
   hosts: artemis
-  become: yes
-  become_user: thulana
-  become_method: sudo
+#  become: yes
+#  become_user: thulana
+#  become_method: sudo
   vars_files:
       - vars/ftp_automation_vars.yml
   roles:

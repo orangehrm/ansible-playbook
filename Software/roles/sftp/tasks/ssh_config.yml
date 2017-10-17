@@ -20,10 +20,10 @@
 #          ForceCommand internal-sftp
 #  notify: SFTP-Server | Restart sshd
 
-- name: SFTP-Server | Add sshd_config block
-  action: shell echo " Match Group {{ user_name }}
-                               ChrootDirectory {{ sftp_home_partition }}/{{ user_name }}
-                               AllowTCPForwarding no
-                               X11Forwarding no
-                               ForceCommand internal-sftp " >> /etc/ssh/sshd_config
-  notify: SFTP-Server | Restart sshd
+#- name: SFTP-Server | Add sshd_config block
+#  action: shell echo " Match Group {{ user_name }}
+#                               ChrootDirectory {{ sftp_home_partition }}/{{ user_name }}
+#                               AllowTCPForwarding no
+#                               X11Forwarding no
+#                               ForceCommand internal-sftp " >> /etc/ssh/sshd_config
+#  notify: SFTP-Server | Restart sshd
