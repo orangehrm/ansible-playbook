@@ -2,7 +2,7 @@
 - name: sftp-playbook | Test sftp-server role
   hosts: artemis
   vars_files:
-      - vars/external_vars.yml
+      - vars/ftp_automation_vars.yml
   roles:
     - ldap
 #   - sftp
