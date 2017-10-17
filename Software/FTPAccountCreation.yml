@@ -1,6 +1,8 @@
 ---
 - name: sftp-playbook | Test sftp-server role
   hosts: phantom
+  user: thulana
+  become_method: sudo
   vars_files:
       - vars/ftp_automation_vars.yml
   roles:
