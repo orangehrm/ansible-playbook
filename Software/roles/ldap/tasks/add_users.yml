@@ -1,4 +1,6 @@
 ---
+- set_fact: usr_pwd={{ usr_pwd | password_hash('sha512') }}
+
 - name: add the user
   ldap_entry:
     dn: uid={{ user_name }},{{ usr_base_dn }}
@@ -12,7 +14,7 @@
     attributes:
       loginShell: "{{ login_shell }}"
       description: An sftp user
-      userPassword: "{{ usr_pwd | password_hash('sha512') }}"
+      userPassword: "{{ '{SSHA}'usr_pwd }}"
       sn: "{{ surname }}"
       cn: "{{ user_name }}"
       gidNumber: "{{ gid }}"
