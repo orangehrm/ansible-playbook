@@ -12,7 +12,7 @@
     attributes:
       loginShell: "{{ login_shell }}"
       description: An sftp user
-      userPassword: "{{ usr_pwd | hash('sha1') }}"
+      userPassword: "{SHA}{{ usr_pwd | hash('sha1') }}"
       sn: "{{ surname }}"
       cn: "{{ user_name }}"
       gidNumber: "{{ gid }}"
