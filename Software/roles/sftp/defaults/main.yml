@@ -1,4 +1,4 @@
-sftp_home_partition: /ftp/internalftp
+sftp_home_partition: /ftp
 sftp_directories: [ home ]
 user_name: "thulana"
 dir_mode: 755

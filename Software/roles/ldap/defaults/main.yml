@@ -9,7 +9,7 @@ bind_pw: "admin"
 usr_pwd: "admin"
 user_name: "redhat3"
 surname: "client"
-sftp_home_partition: "ftp"
+sftp_home_partition: "/ftp"
 login_shell: "bin/bash"
 gid: 8600
 group_name: "client"
