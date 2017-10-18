@@ -12,7 +12,8 @@
     attributes:
       loginShell: "{{ login_shell }}"
       description: An sftp user
-      userPassword: "{MD5}{{ usr_pwd|hash('md5') }}"
+#      userPassword: "{MD5}{{ usr_pwd|hash('md5') }}"
+      userPassword: "{{ usr_pwd }}"
       sn: "{{ surname }}"
       cn: "{{ user_name }}"
       gidNumber: "{{ gid }}"
