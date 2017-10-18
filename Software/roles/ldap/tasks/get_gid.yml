@@ -8,7 +8,7 @@
 
 
 - ini_file:
-    path: /home/Details.ini
+    path: /home/thulana/Details.ini
     section: ldap
     option: gid
     value: "{{ gid }}"
