@@ -8,5 +8,5 @@
       - vars/ftp_automation_vars.yml
   roles:
     - ldap
-    - sftp
+#    - sftp
     - email
