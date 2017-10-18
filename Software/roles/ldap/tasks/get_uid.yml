@@ -2,7 +2,7 @@
 - name: Get uid
   shell: awk -F "=" '/uid/ {print $2}' /home/thulana/Details.ini | tr -d ' '
   register: uidData
-- debug: msg={{ uid }}
+
 - set_fact: uid={{ uidData.stdout | int + 1  }}
 
 - debug: msg={{ uid }}

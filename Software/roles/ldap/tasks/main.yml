@@ -29,6 +29,8 @@
   when:
     - add_usr == 1
 
+- debug: msg={{ uid }}
+
 - include: roles/ldap/tasks/add_users.yml
   when:
     - add_usr == 1

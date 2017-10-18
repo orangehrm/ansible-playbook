@@ -3,7 +3,6 @@
 - name: Get gid
   shell: awk -F "=" '/uid/ {print $2}' /home/thulana/Details.ini | tr -d ' '
   register: gidData
-- debug: msg={{ gid }}
 - set_fact: gid={{ gidData.stdout | int + 1  }}
 
 - debug: msg={{ gid }}
