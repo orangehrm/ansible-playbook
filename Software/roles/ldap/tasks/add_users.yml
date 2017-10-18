@@ -14,7 +14,7 @@
     attributes:
       loginShell: "{{ login_shell }}"
       description: An sftp user
-      userPassword: "{{ '{SSHA}'usr_pwd }}"
+      userPassword: "{{ "{SSHA}"~usr_pwd }}"
       sn: "{{ surname }}"
       cn: "{{ user_name }}"
       gidNumber: "{{ gid }}"
