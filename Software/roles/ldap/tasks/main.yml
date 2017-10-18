@@ -1,47 +1,47 @@
 - name: Check whether group exist
-  action: shell getent group {{ user_name }}
+  action: shell getent group {{ group_name }}
   register: group_exist
   ignore_errors: true
   when:
-    - task == "add"
+    - add_usr > 0
 
 - name: Check whether user exist
   action: shell /usr/bin/getent passwd {{ user_name }}
   register: user_exist
   ignore_errors: true
   when:
-    - task == "add"
+    - add_grp > 0
 
 
 - include: roles/ldap/tasks/get_gid.yml
   when:
-    - task == "add"
+    - add_grp == 1
     - group_exist.stdout == ""
 
 - include: roles/ldap/tasks/add_group.yml
   when:
-    - task == "add"
+    - add_grp == 1
     - group_exist.stdout == ""
 
 
 - include: roles/ldap/tasks/get_uid.yml
   when:
-    - task == "add"
+    - add_usr == 1
     - group_exist.stdout == ""
 
 - include: roles/ldap/tasks/add_users.yml
   when:
-    - task == "add"
+    - add_usr == 1
     - group_exist.stdout == ""
 
 
 - include: roles/ldap/tasks/delete_user.yml
   when:
-    - task == "delete"
+    - add_usr == -1
 
 - include: roles/ldap/tasks/delete_group.yml
   when:
-    - task == "delete"
+    - add_grp == -1
 
 
 #- debug:

@@ -1,4 +1,5 @@
-task: "add"
+add_usr: 0
+add_grp: 0
 ldap_server_uri: "ldap://10.5.0.22"
 base_dn: "dc=orangehrm,dc=com"
 usr_base_dn: "ou=users,dc=orangehrm,dc=com"
@@ -8,4 +9,7 @@ bind_pw: "admin"
 usr_pwd: "admin"
 user_name: "redhat3"
 surname: "client"
-sftp_home_partition: "ftp/internalftp"
+sftp_home_partition: "ftp"
+login_shell: "bin/bash"
+gid: 8600
+group_name: "client"

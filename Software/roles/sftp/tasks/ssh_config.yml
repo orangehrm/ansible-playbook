@@ -13,7 +13,7 @@
     dest: /etc/ssh/sshd_config
     marker: '# {mark} SFTP-Server block'
     block:
-      Match Group {{ user_name }}
+      Match Group {{ group_name }}
           ChrootDirectory {{ sftp_home_partition }}/{{ user_name }}
           AllowTCPForwarding no
           X11Forwarding no

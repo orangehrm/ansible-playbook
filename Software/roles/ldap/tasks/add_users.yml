@@ -3,10 +3,15 @@
   ldap_entry:
     dn: uid={{ user_name }},{{ usr_base_dn }}
     objectClass:
+      - shadowAccount
+      - person
+      - organizationalPerson
+      - posixGroup
       - inetOrgPerson
       - posixAccount
       - top
     attributes:
+      loginShell: "{{ login_shell }}"
       description: An sftp user
       userPassword: "{{ usr_pwd }}"
       sn: "{{ surname }}"

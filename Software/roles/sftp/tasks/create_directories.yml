@@ -5,7 +5,7 @@
   file:
     path: "{{ sftp_home_partition }}/{{ user_name }}/{{ item | default(default_dir) }}"
     owner: "{{ user_name }}"
-    group: "{{ user_name }}"
+    group: "{{ group_name }}"
     mode: "{{ dir_mode  | default(0750) }}"
     state: directory
   with_items:

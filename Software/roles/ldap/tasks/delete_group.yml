@@ -1,6 +1,6 @@
 - name: delete a group
   ldap_entry:
-    dn: cn={{ user_name }},{{ base_dn }}
+    dn: cn={{ group_name }},{{ base_dn }}
     state: absent
     objectClass:
       - posixGroup
