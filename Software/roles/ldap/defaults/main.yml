@@ -13,3 +13,4 @@ sftp_home_partition: "/ftp"
 login_shell: "bin/bash"
 gid: 8600
 group_name: "client"
+config_file_path: "/home/thulana"

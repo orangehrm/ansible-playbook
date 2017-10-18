@@ -1,7 +1,7 @@
 ---
 
 - name: Get gid
-  shell: awk -F "=" '/uid/ {print $2}' /home/thulana/Details.ini | tr -d ' '
+  shell: awk -F "=" '/uid/ {print $2}' {{ config_file_path }}/Details.ini | tr -d ' '
   register: gidData
 - set_fact: gid={{ gidData.stdout | int + 1  }}
 
@@ -9,7 +9,7 @@
 
 
 - ini_file:
-    path: /home/thulana/Details.ini
+    path: "{{ config_file_path }}/Details.ini"
     section: ldap
     option: gid
     value: "{{ gid }}"
