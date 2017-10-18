@@ -8,7 +8,7 @@
 
 
 - ini_file:
-    path: roles/ldap/files/Details.ini
+    path: /home/Details.ini
     section: ldap
     option: gid
     value: "{{ gid }}"
