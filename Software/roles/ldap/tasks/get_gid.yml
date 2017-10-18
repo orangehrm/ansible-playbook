@@ -1,6 +1,6 @@
 ---
 
-- set_fact: gid={{ lookup('ini', 'gid section=ldap file=roles/ldap/files/Details.ini')|int }}
+- set_fact: gid={{ lookup('ini', 'gid section=ldap file=/home/Details.ini')|int }}
 - debug: msg={{ gid }}
 - set_fact: gid={{ gid| int + 1  }}
 
