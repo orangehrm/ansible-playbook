@@ -28,12 +28,10 @@
 - include: roles/ldap/tasks/get_uid.yml
   when:
     - add_usr == 1
-    - group_exist.stdout == ""
 
 - include: roles/ldap/tasks/add_users.yml
   when:
     - add_usr == 1
-    - group_exist.stdout == ""
 
 
 - include: roles/ldap/tasks/delete_user.yml
