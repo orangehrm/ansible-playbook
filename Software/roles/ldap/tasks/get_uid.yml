@@ -1,6 +1,6 @@
 ---
 - name: Get uid
-  shell: awk -F "=" '/uid/ {print $2}' /home/thulana/Details.ini | tr -d ' '
+  shell: awk -F "=" '/uid/ {print $2}' {{ config_file_path }}/Details.ini | tr -d ' '
   register: uidData
 
 - set_fact: uid={{ uidData.stdout | int + 1  }}
@@ -8,7 +8,7 @@
 - debug: msg={{ uid }}
 
 - ini_file:
-    path: /home/thulana/Details.ini
+    path: "{{ config_file_path }}/Details.ini"
     section: ldap
     option: uid
     value: "{{ uid }}"
