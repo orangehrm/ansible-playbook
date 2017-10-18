@@ -6,7 +6,6 @@
       - shadowAccount
       - person
       - organizationalPerson
-      - posixGroup
       - inetOrgPerson
       - posixAccount
       - top
