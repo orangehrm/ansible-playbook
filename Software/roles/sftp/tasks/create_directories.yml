@@ -4,9 +4,8 @@
 - name: SFTP-Server | Create directories per user
   file:
     path: "{{ sftp_home_partition }}/{{ user_name }}/{{ item | default(default_dir) }}"
-    owner: "{{ user_name }}"
-    group: "{{ group_name }}"
     mode: "{{ dir_mode  | default(0750) }}"
     state: directory
+    recurse: yes
   with_items:
     - "{{ sftp_directories }}"
