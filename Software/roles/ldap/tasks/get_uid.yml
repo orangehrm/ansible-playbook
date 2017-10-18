@@ -1,6 +1,12 @@
 ---
-- set_fact: uid="{{ lookup('ini', 'uid section=ldap file=/home/Details.ini')}}"
-- set_fact: uid={{ uid| int + 1  }}
+- name: Get uid
+  shell: awk -F "=" '/uid/ {print $2}' /home/thulana/Details.ini | tr -d ' '
+  register: uidData
+- debug: msg={{ uid }}
+- set_fact: uid={{ uidData.stdout | int + 1  }}
+
+- debug: msg={{ uid }}
+
 - ini_file:
     path: /home/thulana/Details.ini
     section: ldap
