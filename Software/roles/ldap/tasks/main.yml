@@ -1,16 +1,17 @@
+- debug: msg={{ add_usr }}
 - name: Check whether group exist
   action: shell getent group {{ group_name }}
   register: group_exist
   ignore_errors: true
   when:
-    - add_usr > 0
+    - add_usr == 1
 
 - name: Check whether user exist
   action: shell /usr/bin/getent passwd {{ user_name }}
   register: user_exist
   ignore_errors: true
   when:
-    - add_grp > 0
+    - add_grp == 1
 
 
 - include: roles/ldap/tasks/get_gid.yml
