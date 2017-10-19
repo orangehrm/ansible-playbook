@@ -6,7 +6,7 @@
 #  become_method: sudo
   user: thulana
   become: true
-  become_user: thulana
+  become_user: root
   become_method: sudo
   vars_files:
       - vars/ftp_automation_vars.yml
