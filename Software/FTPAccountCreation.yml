@@ -4,6 +4,16 @@
 #  become: yes
 #  become_user: thulana
 #  become_method: sudo
+  vars_files:
+      - vars/ftp_automation_vars.yml
+  roles:
+    - ldap
+
+- name: sftp-playbook | Test sftp-server role
+  hosts: artemis
+#  become: yes
+#  become_user: thulana
+#  become_method: sudo
   user: thulana
   become: true
   become_user: root
@@ -11,6 +21,14 @@
   vars_files:
       - vars/ftp_automation_vars.yml
   roles:
-    - ldap
     - sftp
+
+- name: sftp-playbook | Test sftp-server role
+  hosts: artemis
+#  become: yes
+#  become_user: thulana
+#  become_method: sudo
+  vars_files:
+      - vars/ftp_automation_vars.yml
+  roles:
     - email
