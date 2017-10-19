@@ -1,7 +1,7 @@
 ---
 
 - name: generate password
-  command: "date +%s | sha256sum | base64 | head -c 16 ; echo"
+  action: shell date +%s | sha256sum | base64 | head -c 16 ; echo
   register: usr_pwd
   when:
     - usr_pwd == "generate"
