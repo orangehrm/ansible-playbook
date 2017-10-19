@@ -1,4 +1,8 @@
 ---
+- name: generate ldap admin password hash
+  command: "/usr/sbin/slappasswd -s {{ usr_pwd }}"
+  register: slapd_admin_password_hash
+
 - name: add the user
   ldap_entry:
     dn: uid={{ user_name }},{{ usr_base_dn }}
@@ -13,7 +17,7 @@
       loginShell: "{{ login_shell }}"
       description: An sftp user
 #      userPassword: "{MD5}{{ usr_pwd|hash('md5') }}"
-      userPassword: "{{ usr_pwd }}"
+      userPassword: "{{ slapd_admin_password_hash.stdout }}"
       sn: "{{ surname }}"
       cn: "{{ user_name }}"
       gidNumber: "{{ gid }}"
