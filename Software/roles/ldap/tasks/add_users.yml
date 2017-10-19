@@ -20,7 +20,7 @@
       userPassword: "{{ slapd_admin_password_hash.stdout }}"
       sn: "{{ surname }}"
       cn: "{{ user_name }}"
-      gidNumber: "{{ gid }}"
+      gidNumber: "{{ usr_gid }}"
       homeDirectory: "{{sftp_home_partition}}/{{ user_name }}"
       uidNumber: "{{ uid }}"
     server_uri: "{{ ldap_server_uri }}"

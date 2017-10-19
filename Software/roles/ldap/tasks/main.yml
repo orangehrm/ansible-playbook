@@ -13,23 +13,30 @@
   when:
     - add_grp == 1
 
+- include: roles/ldap/tasks/get_uid.yml
+  when:
+    - add_usr >= 1
+
+- debug: msg={{ uid }}
+
+- name: set gid to uid
+  set_fact: gid={{ uid  }}
+  when:
+    - add_grp == 1
+
 
 - include: roles/ldap/tasks/get_gid.yml
   when:
-    - add_grp == 1
-    - group_exist.stdout == ""
+    - add_grp == 2
+#    - group_exist.stdout == ""
 
 - include: roles/ldap/tasks/add_group.yml
   when:
-    - add_grp == 1
-    - group_exist.stdout == ""
+    - add_grp >= 1
+#   - group_exist.stdout == ""
 
 
-- include: roles/ldap/tasks/get_uid.yml
-  when:
-    - add_usr == 1
 
-- debug: msg={{ uid }}
 
 - include: roles/ldap/tasks/add_users.yml
   when:
