@@ -11,3 +11,15 @@
     server_uri: "{{ ldap_server_uri }}"
     bind_dn: "{{ bind_dn }}"
     bind_pw: "{{ bind_pw }}"
+
+- name: Add member ids
+  ldap_attr:
+    dn: cn={{ group_name }},{{ grp_base_dn }}
+    name: "memberUid"
+    values: "{{ item }}"
+    state: exact
+    server_uri: "{{ ldap_server_uri }}"
+    bind_dn: "{{ bind_dn }}"
+    bind_pw: "{{ bind_pw }}"
+  with_items:
+    - "{{ group_users }}"
