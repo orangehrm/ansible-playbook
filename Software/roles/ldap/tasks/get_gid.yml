@@ -13,4 +13,4 @@
     section: ldap
     option: gid
     value: "{{ gid }}"
-    backup: yes
+    backup: no

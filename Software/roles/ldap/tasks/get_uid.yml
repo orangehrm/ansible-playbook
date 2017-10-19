@@ -12,4 +12,4 @@
     section: ldap
     option: uid
     value: "{{ uid }}"
-    backup: yes
+    backup: no
