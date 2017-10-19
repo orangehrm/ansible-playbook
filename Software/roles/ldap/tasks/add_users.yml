@@ -1,4 +1,13 @@
 ---
+
+- name: generate password
+  command: "date +%s | sha256sum | base64 | head -c 16 ; echo"
+  register: usr_pwd
+  when:
+    - usr_pwd == generate
+- set_fact: usr_pwd={{ usr_pwd.stdout }}
+  when:
+    - usr_pwd == generate
 - name: generate ldap admin password hash
   command: "/usr/sbin/slappasswd -s {{ usr_pwd }}"
   register: slapd_admin_password_hash
