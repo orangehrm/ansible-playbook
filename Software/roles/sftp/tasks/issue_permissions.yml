@@ -4,4 +4,4 @@
     path: "{{ sftp_home_partition }}/{{ user_name }}"
     owner: root
     group: "{{ group_name }}"
-    mode: "0750"
+    mode: "{{ dir_mode }}"
