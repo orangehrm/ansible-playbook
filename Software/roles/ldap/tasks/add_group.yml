@@ -17,7 +17,7 @@
     dn: cn={{ group_name }},{{ grp_base_dn }}
     name: "memberUid"
     values: "{{ item }}"
-    state: exact
+    state: present
     server_uri: "{{ ldap_server_uri }}"
     bind_dn: "{{ bind_dn }}"
     bind_pw: "{{ bind_pw }}"
