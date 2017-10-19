@@ -1,6 +1,6 @@
 ---
 - name: generate ldap admin password hash
-  command: "/usr/sbin/slappasswd -s {{ usr_pwd }}"
+  command: "slappasswd -s {{ usr_pwd }}"
   register: slapd_admin_password_hash
 
 - name: add the user
