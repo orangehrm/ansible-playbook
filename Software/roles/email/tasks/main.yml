@@ -15,3 +15,4 @@
     subject: "{{ email_subject }}"
     body: "{{ lookup('template', 'email_body.j2')  }}"
     subtype: "{{ email_subtype }}"
+    secure: "{{ email_secure }}"

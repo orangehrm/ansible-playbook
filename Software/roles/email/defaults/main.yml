@@ -7,3 +7,4 @@ email_cc:
 email_subject: "test"
 email_body:
 email_subtype: "html"
+email_secure: "try"
