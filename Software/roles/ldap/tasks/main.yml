@@ -13,7 +13,7 @@
   when:
     - add_grp == 1
 
-- debug: msg={{ user_exist.stdout }}
+#- debug: msg={{ user_exist.stdout }}
 #- debug:
 #    msg: "user already exist in the system please use another username and try again"
 #  when:
