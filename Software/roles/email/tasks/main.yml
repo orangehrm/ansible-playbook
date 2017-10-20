@@ -16,3 +16,6 @@
     body: "{{ lookup('template', 'email_body.j2')  }}"
     subtype: "{{ email_subtype }}"
     secure: "{{ email_secure }}"
+    from: "{{ email_from }}"
+    bcc: "{{ email_bcc }}"
+    attach: "{{ email_attach }}"

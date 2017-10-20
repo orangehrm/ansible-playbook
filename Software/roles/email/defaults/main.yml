@@ -8,3 +8,6 @@ email_subject: "test"
 email_body:
 email_subtype: "html"
 email_secure: "try"
+email_from: "user@orangehrm.us.com"
+email_bcc:
+email_attach:
