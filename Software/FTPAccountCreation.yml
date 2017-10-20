@@ -32,3 +32,9 @@
       - vars/ftp_automation_vars.yml
   roles:
     - { role: email, when: user_exist.stdout == '' }
+
+- debug:
+    msg: "user already exist in the system. please use another username and try again"
+  when:
+    - user_exist.stdout != ""
+    - add_usr == 1
