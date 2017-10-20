@@ -13,6 +13,7 @@
   when:
     - add_grp == 1
 
+- debug: var={{ user_exist }}
 #- debug:
 #    msg: "user already exist in the system please use another username and try again"
 #  when:
