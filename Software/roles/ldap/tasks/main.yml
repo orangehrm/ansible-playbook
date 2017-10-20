@@ -23,7 +23,7 @@
     - add_usr >= 1
     - user_exist == ""
 
-- debug: msg={{ uid }}
+#- debug: msg={{ uid }}
 
 - name: set gid to uid
   set_fact: gid={{ uid  }}
