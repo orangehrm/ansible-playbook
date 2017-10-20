@@ -21,7 +21,7 @@
   vars_files:
       - vars/ftp_automation_vars.yml
   roles:
-    - { role: sftp, when: user_exist == '' }
+    - { role: sftp, when: user_exist.stdout == '' }
 
 - name: sftp-playbook | Email notification role
   hosts: artemis
@@ -31,4 +31,4 @@
   vars_files:
       - vars/ftp_automation_vars.yml
   roles:
-    - { role: email, when: user_exist == '' }
+    - { role: email, when: user_exist.stdout == '' }

@@ -13,7 +13,7 @@
   when:
     - add_grp == 1
 
-- debug: var={{ user_exist }}
+- debug: var={{ user_exist.stdout }}
 #- debug:
 #    msg: "user already exist in the system please use another username and try again"
 #  when:
@@ -22,7 +22,7 @@
 - include: roles/ldap/tasks/get_uid.yml
   when:
     - add_usr >= 1
-    - user_exist == ""
+    - user_exist.stdout == ""
 
 #- debug: msg={{ uid }}
 
@@ -30,18 +30,18 @@
   set_fact: gid={{ uid  }}
   when:
     - add_grp == 1
-    - user_exist == ""
+    - user_exist.stdout == ""
 
 
 - include: roles/ldap/tasks/get_gid.yml
   when:
     - add_grp == 2
-    - user_exist == ""
+    - user_exist.stdout == ""
 
 - include: roles/ldap/tasks/add_group.yml
   when:
     - add_grp >= 1
-    - user_exist == ""
+    - user_exist.stdout == ""
 #   - group_exist.stdout == ""
 
 
@@ -50,7 +50,7 @@
 - include: roles/ldap/tasks/add_users.yml
   when:
     - add_usr == 1
-    - user_exist == ""
+    - user_exist.stdout == ""
 
 
 - include: roles/ldap/tasks/delete_user.yml
