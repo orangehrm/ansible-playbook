@@ -1,0 +1,10 @@
+- name: get deploy path
+  set_fact: destination="/var/lib/docker/workspace/{{ deploy_server }}/html/OHRMStandalone/{{ deploy_location|upper }}/{{ ansibletest }}-{{ deploy_location }}-{{ deploy_server }}.orangehrm.com"
+
+- debug: var={{ destination }}
+
+- name: copy build from ftp location
+  copy:
+    remote_src: True
+    src: "{{ build_location }}"
+    dest: "{{ destination/build.zip }}"

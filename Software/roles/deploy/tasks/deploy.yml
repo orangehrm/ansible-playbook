@@ -1,0 +1,8 @@
+- name: unzip build
+  command: "unzip {{ destination/build.zip }} -d {{ destination }}"
+
+- name: delete build
+  command: "cd {{ destination }} rm -f  build.zip "
+
+- name: correct deploy location
+  command: "cd {{ destination }} && cd */ && sudo mv * ../"

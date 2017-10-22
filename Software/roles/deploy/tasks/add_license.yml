@@ -1,0 +1,5 @@
+- name: copy license
+  copy:
+    remote_src: True
+    src: "{{ license_location }}"
+    dest: "{{ destination/ohrm.license.php }}"

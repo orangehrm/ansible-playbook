@@ -1,0 +1,27 @@
+- name: (Redhat) files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: redhat_files
+  tags: [docker]
+
+- name: (Redhat) package is installed
+  yum:
+    name: docker-engine
+    state: present
+  tags: [docker]
+
+- name: (Redhat) System Daemon is reloaded
+  command: systemctl daemon-reload
+  tags: [docker]
+
+- name: (Redhat) service is running
+  service:
+    name: docker
+    state: running
+  tags: [docker]
+
+- name: (Redhat) service is enabled in reboot
+  command: systemctl enable docker
+  tags: [docker]
+

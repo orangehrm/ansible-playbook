@@ -1,0 +1,12 @@
+#docker_extra: ""
+#
+#redhat_files: [
+#  { src: "docker.redhat.repo", dest: "/etc/yum.repos.d/docker.repo" }
+#]
+
+deploy_server: "phantom"
+deploy_name: "ansibletest"
+deploy_location: "uat"
+build_location: "/ftp/internalftp/Jenkins/Eagle-Pipeline/orangehrm-6.3.1.1.102834.zip"
+license_location: "/home/thulana/ohrm.license.php"
+
