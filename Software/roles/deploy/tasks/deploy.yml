@@ -1,5 +1,5 @@
-- name: unzip build
-  command: "unzip {{ destination }}/build.zip -d {{ destination }}"
+#- name: unzip build
+#  command: "unzip {{ destination }}/build.zip -d {{ destination }}"
 
 - name: Unarchive a file that is already on the remote machine
   unarchive:
