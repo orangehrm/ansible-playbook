@@ -1,5 +1,5 @@
 - name: unzip build
-  command: "unzip {{ destination/build.zip }} -d {{ destination }}"
+  command: "unzip {{ destination }}/build.zip -d {{ destination }}"
 
 - name: delete build
   command: "cd {{ destination }} rm -f  build.zip "
