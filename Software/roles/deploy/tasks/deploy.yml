@@ -1,19 +1,19 @@
 #- name: unzip build
 #  command: "unzip {{ destination }}/build.zip -d {{ destination }}"
 
-- name: Unarchive a file that is already on the remote machine
-  unarchive:
-    src: "{{ destination }}/build.zip"
-    dest: "{{ destination }}"
-    remote_src: yes
-
-- name: Remove build
-  win_file:
-    path: "{{ destination }}/build.zip"
-    state: absent
+#- name: Unarchive a file that is already on the remote machine
+#  unarchive:
+#    src: "{{ destination }}/build.zip"
+#    dest: "{{ destination }}"
+#    remote_src: yes
+#
+#- name: Remove build
+#  win_file:
+#    path: "{{ destination }}/build.zip"
+#    state: absent
 #
 #- name: delete build
 #  command: "cd {{ destination }} rm -f  build.zip "
 
 - name: correct deploy location
-  command: "cd {{ destination }} && cd */ && mv * ../"
+  action: shell cd {{ destination }} && cd */ && mv * ../
