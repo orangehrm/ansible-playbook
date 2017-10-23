@@ -7,8 +7,13 @@
     dest: "{{ destination }}"
     remote_src: yes
 
-- name: delete build
-  command: "cd {{ destination }} rm -f  build.zip "
+- name: Remove build
+  win_file:
+    path: "{{ destination }}/build.zip"
+    state: absent
+#
+#- name: delete build
+#  command: "cd {{ destination }} rm -f  build.zip "
 
 - name: correct deploy location
-  command: "cd {{ destination }} && cd */ && sudo mv * ../"
+  command: "cd {{ destination }} && cd */ && mv * ../"
