@@ -3,8 +3,8 @@
 
 - debug: msg={{ destination }}
 
-- name: create folder
-  command: "cd /var/lib/docker/workspace/{{ deploy_server }}/html/OHRMStandalone/{{ deploy_location|upper }} && mkdir {{ deploy_name }}-{{ deploy_location }}-{{ deploy_server }}.orangehrm.com"
+- name: create directory
+  file: path={{ destination }} state=directory
 
 - name: copy build from ftp location
   copy:
