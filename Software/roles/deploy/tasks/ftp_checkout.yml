@@ -1,7 +1,7 @@
 - name: get deploy path
   set_fact: destination="/var/lib/docker/workspace/{{ deploy_server }}/html/OHRMStandalone/{{ deploy_location|upper }}/{{ deploy_name }}-{{ deploy_location }}-{{ deploy_server }}.orangehrm.com"
 
-- debug: var={{ destination }}
+- debug: msg={{ destination }}
 
 - name: copy build from ftp location
   copy:
