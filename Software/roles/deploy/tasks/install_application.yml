@@ -1,12 +1,12 @@
 - name: select db password
   set_fact: db_pwd={{ phantom_db_pwd }}
   when:
-    - {{ deploy_server }} == "phantom"
+    - "{{ deploy_server }}" == "phantom"
 
 - name: select db password
   set_fact: db_pwd={{ iris_db_pwd }}
   when:
-    - {{ deploy_server }} == "iris"
+    - "{{ deploy_server }}" == "iris"
 
 - name: install application
   action: shell docker exec {{ deploy_server }}_web bash -c "cd {{ destination }}/installer && bash cli_install.sh -h db -p 3306 -d {{ deploy_name }}_db -a admin -ap {{ admin_password }} -u root -up {{ db_pwd }} -e n -c n -sm y -so n -sp y -lc y -oc US,LK -cn"
