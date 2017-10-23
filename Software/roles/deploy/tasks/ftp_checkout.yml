@@ -1,6 +1,9 @@
 - name: get deploy path
   set_fact: destination="/var/lib/docker/workspace/{{ deploy_server }}/html/OHRMStandalone/{{ deploy_location|upper }}/{{ deploy_name }}-{{ deploy_location }}-{{ deploy_server }}.orangehrm.com"
 
+- name: get deploy path
+  set_fact: url="{{ deploy_name }}-{{ deploy_location }}-{{ deploy_server }}.orangehrm.com"
+
 - debug: msg={{ destination }}
 
 - name: create directory
