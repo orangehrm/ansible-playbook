@@ -1,6 +1,12 @@
 - name: unzip build
   command: "unzip {{ destination }}/build.zip -d {{ destination }}"
 
+- name: Unarchive a file that is already on the remote machine
+  unarchive:
+    src: "{{ destination }}/build.zip"
+    dest: "{{ destination }}"
+    remote_src: yes
+
 - name: delete build
   command: "cd {{ destination }} rm -f  build.zip "
 
