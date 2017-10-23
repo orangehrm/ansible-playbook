@@ -7,4 +7,5 @@
   copy:
     remote_src: True
     src: "{{ build_location }}"
+    force: "no"
     dest: "{{ destination }}/build.zip"
