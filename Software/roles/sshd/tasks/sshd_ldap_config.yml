@@ -5,7 +5,7 @@
 
 - name: sshd | add ldap ssh key support
   shell: echo "AuthorizedKeysCommand /usr/bin/ldap_ssh_auth" >> /etc/ssh/sshd_config
-  when: test_grep1.stdout != ""
+  when: test_grep1.stdout == ""
 
 - name: Test for line
   shell: grep "^AuthorizedKeysCommandUser" /etc/ssh/sshd_config
@@ -15,7 +15,7 @@
 - name: sshd | add ldap ssh key support
   shell: echo "AuthorizedKeysCommandUser nobody" >> /etc/ssh/sshd_config
   notify: restart ssh
-  when: test_grep2.stdout != ""
+  when: test_grep2.stdout == ""
 
 
 #- name: sshd | add ldap ssh key support
