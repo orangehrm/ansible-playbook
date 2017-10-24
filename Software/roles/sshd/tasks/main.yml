@@ -3,8 +3,8 @@
   notify: restart ssh
   when: sshd_config == "yes"
 
-- include: ldap_sshpubkey_config.yml
+- include: roles/sshd/tasks/ldap_sshpubkey_config.yml
   when: sshd_ldap_sshkey_authentication == "yes"
 
-- include: ssh_ldap_config.yml
+- include: roles/sshd/tasks/sshd_ldap_config.yml
   when: sshd_ldap_sshkey_authentication == "yes"
