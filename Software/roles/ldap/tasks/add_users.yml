@@ -1,13 +1,33 @@
 ---
+- name: generate sshkey
+  action: shell yes | ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N "" && cat /tmp/sshkey.pub
+  register: ssh_pub_key
+  when:
+    - usr_pwd == "sshkey"
+
+- set_fact: ssh_pub_key={{ ssh_pub_key.stdout }}
+  when:
+    - usr_pwd == "sshkey"
+
+- name: generate sshkey
+  action: cat /tmp/sshkey
+  register: ssh_pvt_key
+  when:
+    - usr_pwd == "sshkey"
+
+- set_fact: ssh_pvt_key={{ ssh_pvt_key.stdout }}
+  when:
+    - usr_pwd == "sshkey"
 
 - name: generate password
   action: shell date +%s | sha256sum | base64 | head -c 16 ; echo
   register: generated_usr_pwd
   when:
-    - usr_pwd == "generate"
+    - usr_pwd == "generate" or usr_pwd == "sshkey"
+
 - set_fact: usr_pwd={{ generated_usr_pwd.stdout }}
   when:
-    - usr_pwd == "generate"
+    - usr_pwd == "generate" or usr_pwd == "sshkey"
 
 
 - name: generate ldap admin password hash
@@ -24,6 +44,7 @@
       - inetOrgPerson
       - posixAccount
       - top
+      - ldapPublicKey
     attributes:
       loginShell: "{{ login_shell }}"
       description: An sftp user
@@ -37,3 +58,15 @@
     server_uri: "{{ ldap_server_uri }}"
     bind_dn: "{{ bind_dn }}"
     bind_pw: "{{ bind_pw }}"
+
+- name: Add ssh key ids
+  ldap_attr:
+    dn: uid={{ user_name }},{{ usr_base_dn }}
+    name: "sshPublicKey"
+    values: "{{ ssh_pub_key }}"
+    state: present
+    server_uri: "{{ ldap_server_uri }}"
+    bind_dn: "{{ bind_dn }}"
+    bind_pw: "{{ bind_pw }}"
+  when:
+    - usr_pwd == "sshkey"
