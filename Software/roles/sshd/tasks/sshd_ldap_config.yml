@@ -1,6 +1,7 @@
 - name: Test for line
   shell: grep "^AuthorizedKeysCommand" /etc/ssh/sshd_config
   register: test_grep1
+  ignore_errors: true
 
 - name: sshd | add ldap ssh key support
   shell: echo "AuthorizedKeysCommand /usr/bin/ldap_ssh_auth" >> /etc/ssh/sshd_config
@@ -9,6 +10,7 @@
 - name: Test for line
   shell: grep "^AuthorizedKeysCommandUser" /etc/ssh/sshd_config
   register: test_grep2
+  ignore_errors: true
 
 - name: sshd | add ldap ssh key support
   shell: echo "AuthorizedKeysCommandUser nobody" >> /etc/ssh/sshd_config
