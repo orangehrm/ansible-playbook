@@ -1,6 +1,8 @@
 ---
 - name: sshd | ssh configuration for ssh key authentication using ldap
-  hosts: iris
+  hosts:
+    - iris
+    - phantom
   become: yes
   become_user: root
   become_method: sudo
