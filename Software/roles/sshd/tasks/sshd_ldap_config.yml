@@ -1,14 +1,32 @@
-- name: sshd | add ldap ssh key support
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^AuthorizedKeysCommand'
-    line: "AuthorizedKeysCommand /usr/bin/ldap_ssh_auth"
-    state: present
+- name: Test for line
+  shell: grep "^AuthorizedKeysCommand" /etc/ssh/sshd_config
+  register: test_grep1
 
 - name: sshd | add ldap ssh key support
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^AuthorizedKeysCommandUser'
-    line: "AuthorizedKeysCommandUser nobody"
-    state: present
+  shell: echo "AuthorizedKeysCommand /usr/bin/ldap_ssh_auth" >> /etc/ssh/sshd_config
+  when: test_grep1.stdout != ""
+
+- name: Test for line
+  shell: grep "^AuthorizedKeysCommandUser" /etc/ssh/sshd_config
+  register: test_grep2
+
+- name: sshd | add ldap ssh key support
+  shell: echo "AuthorizedKeysCommandUser nobody" >> /etc/ssh/sshd_config
   notify: restart ssh
+  when: test_grep2.stdout != ""
+
+
+#- name: sshd | add ldap ssh key support
+#  lineinfile:
+#    path: /etc/ssh/sshd_config
+#    regexp: '^AuthorizedKeysCommand'
+#    line: "AuthorizedKeysCommand /usr/bin/ldap_ssh_auth"
+#    state: present
+#
+#- name: sshd | add ldap ssh key support
+#  lineinfile:
+#    path: /etc/ssh/sshd_config
+#    regexp: '^AuthorizedKeysCommandUser'
+#    line: "AuthorizedKeysCommandUser nobody"
+#    state: present
+#  notify: restart ssh
