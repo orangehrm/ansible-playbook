@@ -1,0 +1,11 @@
+---
+- name: sftp-playbook | Add ldap User and group role
+  hosts: artemis
+#  become: yes
+#  become_user: thulana
+#  become_method: sudo
+  vars_files:
+      - vars/ftp_deployment_vars.yml
+  roles:
+    - deploy
+
