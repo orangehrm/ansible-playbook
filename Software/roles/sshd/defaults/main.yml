@@ -15,3 +15,9 @@ sshd_tcp_keep_alive: "no"
 # if need sftp then sftp_only_enabled xor sftp_enabled
 sshd_sftp_only_enabled: no
 sshd_sftp_enabled: no
+sshd_ldap_sshkey_authentication: "yes"
+sshd_config: "no"
+ldap_server: "ldaps://" #Put your server IP
+ldap_basedn: "ou=users,dc=orangehrm,dc=com" #Put your basedn
+ldap_binddn: "dc=orangehrm,dc=com"
+ldap_bindpw: "password"

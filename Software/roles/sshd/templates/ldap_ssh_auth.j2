@@ -1,148 +1,21 @@
-# WARNING: managed by Ansible
-# See the sshd_config(5) manpage for details
+#!/bin/bash
+cn=$1
+server={{ ldap_server }} #Put your server IP
+basedn={{ ldap_basedn }} #Put your basedn
+binddn={{ ldap_binddn }}
+bindpw={{ ldap_bindpw }}
 
-# What ports, IPs and protocols we listen for
-Port {{ sshd_port }}
-# Use these options to restrict which interfaces/protocols sshd will bind to
-#ListenAddress ::
-#ListenAddress 0.0.0.0
-Protocol 2
+set -eou pipefail
+IFS=$'\n\t'
 
-# HostKeys for protocol version 2
-HostKey /etc/ssh/ssh_host_rsa_key
-#HostKey /etc/ssh/ssh_host_dsa_key
-HostKey /etc/ssh/ssh_host_ecdsa_key
-HostKey /etc/ssh/ssh_host_ed25519_key
+result=$(ldapsearch -D $binddn -w $bindpw -H $server -b $basedn '(&(objectClass=posixAccount)(uid='"$1"'))' 'sshPublicKey')
+attrLine=$(echo "$result" | sed -n '/^ /{H;d};/sshPublicKey:/x;$g;s/\n *//g;/sshPublicKey:/p')
 
-# Lifetime and size of ephemeral version 1 server key
-KeyRegenerationInterval 3600
-ServerKeyBits 1024
+if [[ "$attrLine" == sshPublicKey::* ]]; then
+  echo "$attrLine" | sed 's/sshPublicKey:: //' | base64 -d
+elif [[ "$attrLine" == sshPublicKey:* ]]; then
+  echo "$attrLine" | sed 's/sshPublicKey: //'
+else
+  exit 1
+fi
 
-# Logging
-SyslogFacility {{sshd_log_facility}}
-LogLevel {{sshd_log_level}}
-
-# Authentication:
-#LoginGraceTime 120
-PermitRootLogin {{ sshd_permit_root_login }}
-#StrictModes yes
-#MaxAuthTries
-MaxSessions {{sshd_max_sessions}}
-
-#RSAAuthentication yes
-#PubkeyAuthentication yes
-
-AuthorizedKeysFile	%h/.ssh/authorized_keys
-#AuthorizedPrincipalsFile none
-#AuthorizedKeysCommand none
-#AuthorizedKeysCommandUser nobody
-
-# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
-#RhostsRSAAuthentication no
-# similar for protocol version 2
-#HostbasedAuthentication no
-# Change to yes if you don't trust ~/.ssh/known_hosts for
-# RhostsRSAAuthentication and HostbasedAuthentication
-#IgnoreUserKnownHosts no
-# Don't read the user's ~/.rhosts and ~/.shosts files
-#IgnoreRhosts yes
-
-
-# To disable tunneled clear text passwords, change to no here!
-#PasswordAuthentication yes
-#PermitEmptyPasswords no
-PasswordAuthentication {{ sshd_password_authentication }}
-
-
-# Change to yes to enable challenge-response passwords (beware issues with
-# some PAM modules and threads)
-ChallengeResponseAuthentication no
-
-
-
-# Kerberos options
-#KerberosAuthentication no
-#KerberosGetAFSToken no
-#KerberosOrLocalPasswd yes
-#KerberosTicketCleanup yes
-
-# GSSAPI options
-GSSAPIAuthentication no
-GSSAPICleanupCredentials no
-#GSSAPIStrictAcceptorCheck yes
-#GSSAPIKeyExchange no
-#GSSAPIEnablek5users no
-
-
-# Set this to 'yes' to enable PAM authentication, account processing,
-# and session processing. If this is enabled, PAM authentication will
-# be allowed through the ChallengeResponseAuthentication and
-# PasswordAuthentication.  Depending on your PAM configuration,
-# PAM authentication via ChallengeResponseAuthentication may bypass
-# the setting of "PermitRootLogin without-password".
-# If you just want the PAM account and session checks to run without
-# PAM authentication, then enable this but set PasswordAuthentication
-# and ChallengeResponseAuthentication to 'no'.
-UsePAM yes
-
-AllowAgentForwarding {{sshd_allow_agent_forwarding}}
-AllowTcpForwarding {{sshd_allow_tcp_forwarding}}
-#GatewayPorts no
-X11Forwarding {{sshd_x11_forwarding}}
-#X11DisplayOffset 10
-#X11UseLocalhost yes
-#PermitTTY yes
-#PrintMotd yes
-#PrintLastLog yes
-TCPKeepAlive {{sshd_tcp_keep_alive}}
-#UseLogin no
-UsePrivilegeSeparation sandbox          # Default for new installations.
-#PermitUserEnvironment no
-Compression {{sshd_compression}}
-#ClientAliveInterval 0
-ClientAliveCountMax {{sshd_client_alive_count_max}}
-#ShowPatchLevel no
-UseDNS {{sshd_use_dns}}
-#PidFile /var/run/sshd.pid
-#MaxStartups 10:30:100
-#PermitTunnel no
-#ChrootDirectory none
-#VersionAddendum none
-
-# no default banner path
-#Banner none
-
-
-X11Forwarding {{ sshd_x11_forwarding }}
-X11DisplayOffset 10
-PrintMotd no
-PrintLastLog yes
-TCPKeepAlive yes
-#UseLogin no
-
-#MaxStartups 10:30:60
-#Banner /etc/issue.net
-
-# Accept locale-related environment variables
-AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
-AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
-AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
-AcceptEnv XMODIFIERS
-
-
-{% if sshd_sftp_only_enabled %}
-Subsystem sftp internal-sftp
-{% elif sshd_sftp_enabled %}
-Subsystem sftp /usr/lib/openssh/sftp-server
-{% else %}
-# Subsystem sftp /usr/lib/openssh/sftp-server
-{% endif %}
-
-
-{% if sshd_sftp_only_enabled %}
-Match Group sftponly
-    ChrootDirectory %h
-    X11Forwarding no
-    AllowTcpForwarding no
-    ForceCommand internal-sftp
-{% endif %}

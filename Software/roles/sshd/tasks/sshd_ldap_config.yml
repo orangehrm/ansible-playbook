@@ -1,2 +1,14 @@
-- name: Copy script file into place
-  template: src=ldap_ssh_auth.j2 dest=/usr/bin/ldap_ssh_auth owner=root group=root mode=755
+- name: sshd | add ldap ssh key support
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^AuthorizedKeysCommand'
+    line: "AuthorizedKeysCommand /usr/bin/ldap_ssh_auth"
+    state: present
+
+- name: sshd | add ldap ssh key support
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^AuthorizedKeysCommandUser'
+    line: "AuthorizedKeysCommandUser nobody"
+    state: present
+  notify: restart ssh

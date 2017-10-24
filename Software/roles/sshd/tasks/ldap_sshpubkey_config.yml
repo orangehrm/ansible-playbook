@@ -1,3 +1,2 @@
-- name: Copy sshd_config into place
-  template: src=sshd_config.j2 dest=/etc/ssh/sshd_config owner=root group=root mode=600
-  notify: restart ssh
+- name: Copy script file into place
+  template: src=ldap_ssh_auth.j2 dest=/usr/bin/ldap_ssh_auth owner=root group=root mode=755

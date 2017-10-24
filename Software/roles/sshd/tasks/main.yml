@@ -1,3 +1,10 @@
 - name: Copy sshd_config into place
   template: src=sshd_config.j2 dest=/etc/ssh/sshd_config owner=root group=root mode=600
   notify: restart ssh
+  when: sshd_config == "yes"
+
+- include: ldap_sshpubkey_config.yml
+  when: sshd_ldap_sshkey_authentication == "yes"
+
+- include: ssh_ldap_config.yml
+  when: sshd_ldap_sshkey_authentication == "yes"
