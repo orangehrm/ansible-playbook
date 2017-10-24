@@ -1,5 +1,5 @@
 ---
-- name: sftp-playbook | Add ldap User and group role
+- name: sshd | ssh configuration for ssh key authentication using ldap
   hosts: iris
   become: yes
   become_user: root
