@@ -2,7 +2,7 @@
 - name: sftp-playbook | Add ldap User and group role
   hosts: iris
   become: yes
-  become_user: thulana
+  become_user: root
   become_method: sudo
   vars_files:
       - vars/sshd_ldap_publickey_vars.yml
