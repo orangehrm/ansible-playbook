@@ -1,16 +1,12 @@
 ---
 
 - name: remove sshkey
-  file:
-    path: /tmp/sshkey
-    state: absent
+  action: shell rm /tmp/sshkey
   when:
     - usr_pwd == "sshkey"
 
 - name: remove sshkey.pub
-  file:
-    path: /tmp/sshkey.pub
-    state: absent
+  action: shell rm /tmp/sshkey.pub
   when:
     - usr_pwd == "sshkey"
 
