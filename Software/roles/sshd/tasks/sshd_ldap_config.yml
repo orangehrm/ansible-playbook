@@ -21,7 +21,7 @@
 - name: sshd | add ldap ssh key support
   lineinfile:
     path: /etc/ssh/sshd_config
-    regexp: '^AuthorizedKeysCommand'
+    regexp: '^AuthorizedKeysCommand /'
     line: "AuthorizedKeysCommand /usr/bin/ldap_ssh_auth"
     unsafe_writes: yes
     state: present
