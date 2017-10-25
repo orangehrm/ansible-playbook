@@ -1,4 +1,20 @@
 ---
+
+- name: remove sshkey
+  file:
+    path: /tmp/sshkey
+    state: absent
+  when:
+    - usr_pwd == "sshkey"
+
+- name: remove sshkey.pub
+  file:
+    path: /tmp/sshkey.pub
+    state: absent
+  when:
+    - usr_pwd == "sshkey"
+
+
 - name: generate sshkey
   action: shell yes | ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N "" && cat /tmp/sshkey.pub
   register: ssh_pub_key
