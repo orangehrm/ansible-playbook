@@ -15,3 +15,4 @@ usr_gid: 8600
 group_name: "client"
 config_file_path: "/home/thulana"
 group_users: [ ]
+sshkey_path: "/home/thulana"

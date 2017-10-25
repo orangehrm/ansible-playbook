@@ -1,18 +1,20 @@
 ---
 
 - name: remove sshkey
-  action: shell rm /tmp/sshkey
+  action: shell rm {{ sshkey_path }}/sshkey
+  ignore_errors: true
   when:
     - usr_pwd == "sshkey"
 
 - name: remove sshkey.pub
-  action: shell rm /tmp/sshkey.pub
+  action: shell rm {{ sshkey_path }}/sshkey.pub
+  ignore_errors: true
   when:
     - usr_pwd == "sshkey"
 
 
 - name: generate sshkey
-  action: shell yes | ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N "" && cat /tmp/sshkey.pub
+  action: shell yes | ssh-keygen -b 2048 -t rsa -f {{ sshkey_path }}/sshkey -q -N "" && cat {{ sshkey_path }}/sshkey.pub
   register: ssh_pub_key
   when:
     - usr_pwd == "sshkey"
@@ -22,7 +24,7 @@
     - usr_pwd == "sshkey"
 
 - name: generate sshkey
-  action: shell cat /tmp/sshkey
+  action: shell cat {{ sshkey_path }}/sshkey
   register: ssh_pvt_key
   when:
     - usr_pwd == "sshkey"
