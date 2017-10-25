@@ -10,7 +10,7 @@
     - usr_pwd == "sshkey"
 
 - name: generate sshkey
-  action: cat /tmp/sshkey
+  action: shell cat /tmp/sshkey
   register: ssh_pvt_key
   when:
     - usr_pwd == "sshkey"
