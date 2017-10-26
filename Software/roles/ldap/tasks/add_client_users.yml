@@ -39,13 +39,13 @@
   when:
     - usr_pwd == "generate" or usr_pwd == "sshkey"
 
-- set_fact: usr_pwd={{ generated_usr_pwd.stdout }}
+- set_fact: text_usr_pwd={{ generated_usr_pwd.stdout }}
   when:
     - usr_pwd == "generate" or usr_pwd == "sshkey"
 
 
 - name: generate ldap admin password hash
-  command: "/usr/sbin/slappasswd -s {{ usr_pwd }}"
+  command: "/usr/sbin/slappasswd -s {{ text_usr_pwd }}"
   register: slapd_admin_password_hash
 
 - name: add the user
