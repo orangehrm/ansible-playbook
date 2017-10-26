@@ -4,14 +4,14 @@
   register: group_exist
   ignore_errors: true
   when:
-    - add_usr >= 1
+    - add_grp >= 1
 
 - name: Check whether user exist
   action: shell /usr/bin/getent passwd {{ user_name }}
   register: user_exist
   ignore_errors: true
   when:
-    - add_grp >= 1
+    - add_usr >= 1
 
 #- debug: msg={{ user_exist.stdout }}
 #- debug:
