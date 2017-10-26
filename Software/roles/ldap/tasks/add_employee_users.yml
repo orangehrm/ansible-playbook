@@ -48,6 +48,12 @@
   command: "/usr/sbin/slappasswd -s {{ usr_pwd }}"
   register: slapd_admin_password_hash
 
+- name: get group id
+  action: shell getent group {{ group_name }} | cut -d: -f3
+  register: group_id
+
+- set_fact: usr_gid={{ group_id.stdout }}
+
 - name: add the user
   ldap_entry:
     dn: uid={{ user_name }},{{ usr_base_dn }}
