@@ -70,5 +70,5 @@
 - debug:
     msg: "user already exist in the system. please use another username and try again"
   when:
-    - user_exist.stdout != ""
     - add_usr == 1
+    - user_exist.stdout != ""
