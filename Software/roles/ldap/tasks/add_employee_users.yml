@@ -49,7 +49,7 @@
   register: slapd_admin_password_hash
 
 - name: get group id
-  action: shell getent group {{ group_name }} | cut -d: -f3
+  action: "shell getent group {{ group_name }} | cut -d: -f3"
   register: group_id
 
 - set_fact: usr_gid={{ group_id.stdout }}
