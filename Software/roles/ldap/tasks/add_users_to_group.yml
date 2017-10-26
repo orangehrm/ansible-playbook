@@ -1,4 +1,4 @@
-- debug: msg={{ gid }}
+#- debug: msg={{ gid }}
 
 - name: Add user to a group
   ldap_attr:
