@@ -5,7 +5,7 @@
 #  become_user: thulana
 #  become_method: sudo
   vars_files:
-      - vars/Add_ldap_employee_vars.yml
+      - vars/assign_permissions_vars.yml
   roles:
     - ldap
 
