@@ -1,0 +1,14 @@
+- debug: msg={{ gid }}
+
+- name: Add user to a group
+  ldap_attr:
+    dn: cn={{ permission_group }},ou={{ server_or_software }},ou={{ permission_type }},{{ grp_base_dn }}
+    name: "memberUid"
+    values: "{{ item }}"
+    state: present
+    server_uri: "{{ ldap_server_uri }}"
+    bind_dn: "{{ bind_dn }}"
+    bind_pw: "{{ bind_pw }}"
+  with_items:
+    - "{{ group_users }}"
+

@@ -63,6 +63,9 @@
   when:
     - add_grp == -1
 
+- include: roles/ldap/tasks/add_users_to_group.yml
+  when:
+      - ldap_issue_permissions
 
 - debug:
     msg: "user already exist in the system. please use another username and try again"

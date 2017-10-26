@@ -24,3 +24,7 @@ usr_shadowMax: 999999
 usr_shadowMin: 8
 employee_type: "developers"
 usr_shadowWarning: 7
+ldap_issue_permissions: True
+permission_type: "servers"
+permission_group: "admin"
+server_or_software: "artemis"
