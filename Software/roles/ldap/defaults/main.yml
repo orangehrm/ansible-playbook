@@ -16,3 +16,11 @@ group_name: "client"
 config_file_path: "/home/thulana"
 group_users: [ ]
 sshkey_path: "/home/thulana"
+usr_shadowExpire: -1
+email_to: "user@orangehrm.com"
+usr_shadowFlag: 0
+usr_shadowLastChange: 10877
+usr_shadowMax: 999999
+usr_shadowMin: 8
+employee_type: "developers"
+usr_shadowWarning: 7

@@ -1,0 +1,35 @@
+---
+- name: employee-ldap-creation-playbook | Add ldap User role
+  hosts: artemis
+#  become: yes
+#  become_user: thulana
+#  become_method: sudo
+  vars_files:
+      - vars/Add_ldap_employee_vars.yml
+  roles:
+    - ldap
+
+#- name: sftp-playbook | Sftp config role
+#  hosts: artemis
+##  become: yes
+##  become_user: thulana
+##  become_method: sudo
+#  user: thulana
+#  become: true
+#  become_user: root
+#  become_method: sudo
+#  vars_files:
+#      - vars/ftp_automation_vars.yml
+#  roles:
+#    - { role: sftp, when: user_exist.stdout == '' }
+
+- name: employee-ldap-creation-playbook | Email notification role
+  hosts: artemis
+#  become: yes
+#  become_user: thulana
+#  become_method: sudo
+  vars_files:
+      - vars/Add_ldap_employee_vars.yml
+  roles:
+    - { role: email, when: user_exist.stdout == '' }
+

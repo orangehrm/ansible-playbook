@@ -75,7 +75,7 @@
 
 - name: Add ssh key ids
   ldap_attr:
-    dn: uid={{ user_name }},{{ usr_base_dn }}
+    dn: uid={{ user_name }},{{ "ou="employee_type,usr_base_dn }}
     name: "sshPublicKey"
     values: "{{ ssh_pub_key }}"
     state: present

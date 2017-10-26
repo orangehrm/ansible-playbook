@@ -4,14 +4,14 @@
   register: group_exist
   ignore_errors: true
   when:
-    - add_usr == 1
+    - add_usr >= 1
 
 - name: Check whether user exist
   action: shell /usr/bin/getent passwd {{ user_name }}
   register: user_exist
   ignore_errors: true
   when:
-    - add_grp == 1
+    - add_grp >= 1
 
 #- debug: msg={{ user_exist.stdout }}
 #- debug:
@@ -45,13 +45,15 @@
 #   - group_exist.stdout == ""
 
 
-
-
-- include: roles/ldap/tasks/add_users.yml
+- include: roles/ldap/tasks/add_client_users.yml
   when:
     - add_usr == 1
     - user_exist.stdout == ""
 
+- include: roles/ldap/tasks/add_employee_users.yml
+  when:
+    - add_usr == 2
+    - user_exist.stdout == ""
 
 - include: roles/ldap/tasks/delete_user.yml
   when:
