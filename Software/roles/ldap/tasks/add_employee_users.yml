@@ -56,7 +56,7 @@
 
 - name: add the user
   ldap_entry:
-    dn: uid={{ user_name }},{{ usr_base_dn }}
+    dn: uid={{ user_name }},ou={{employee_type}},{{ usr_base_dn }}
     objectClass:
       - shadowAccount
       - person
@@ -70,12 +70,12 @@
 #      userPassword: "{MD5}{{ usr_pwd|hash('md5') }}"
       userPassword: "{{ slapd_admin_password_hash.stdout }}"
       sn: "{{ surname }}"
-      cn: "{{ user_name surname }}"
+      cn: "{{ user_name }} {{ surname }}"
       gidNumber: "{{ usr_gid }}"
       homeDirectory: "{{sftp_home_partition}}/{{ user_name }}"
       uidNumber: "{{ uid }}"
-      displayName: "{{ user_name surname }}"
-      gecos: "{{ user_name surname }}"
+      displayName: "{{ user_name }} {{ surname }}"
+      gecos: "{{ user_name }} {{ surname }}"
       givenName: "{{ user_name }}"
       mail: "{{ email_to }}"
       shadowExpire: "{{ usr_shadowExpire }}"
@@ -91,7 +91,7 @@
 
 - name: Add ssh key ids
   ldap_attr:
-    dn: uid={{ user_name }},{{ usr_base_dn }}
+    dn: uid={{ user_name }},ou={{employee_type}},{{ usr_base_dn }}
     name: "sshPublicKey"
     values: "{{ ssh_pub_key }}"
     state: present
